@@ -1,6 +1,5 @@
 class TodosController < ApplicationController
   def getTodo
-    users = { id:1, nickname: "ぴよっち", age: 22 }
-    render json: users
+    render json: { todo: Todo.all }
   end
 end
