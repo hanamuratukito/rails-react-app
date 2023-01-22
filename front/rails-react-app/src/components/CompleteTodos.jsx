@@ -6,11 +6,11 @@ export const CompleteTodos = (props) => {
     <div className="complete-area">
       <p className="title">完了のTODO</p>
       <ul>
-        {completeTodos.map((todo, index) => {
+        {completeTodos.map((todo) => {
           return (
-            <div key={todo} className="list-row">
-              <li>{todo}</li>
-              <button onClick={() => onClickback(index)}>戻す</button>
+            <div key={todo.id} className="list-row">
+              <li>{todo.text}</li>
+              <button onClick={() => onClickback(todo.id)}>戻す</button>
             </div>
           );
         })}

@@ -9,6 +9,8 @@ export const App = () => {
   useEffect(()=>{
     (async () => {
       const res = await axios.get('http://localhost:3001/todos/getTodo');
+      setIncompleteTodos(res.data.incompleteTodos);
+      setCompleteTodos(res.data.completeTodos);
     
       console.log(res);
     })()
@@ -26,42 +28,33 @@ export const App = () => {
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
   // 追加ボタン押下時の処理
-  const onClickAdd = () => {
+  const onClickAdd = async () => {
     if (todoText === "") return;
-    const newTodos = [...incompleteTodos, todoText];
-    setIncompleteTodos(newTodos);
+    const res = await axios.post('http://localhost:3001/todos/addTodo', { text: todoText });
+    setIncompleteTodos(res.data.incompleteTodos);
+
     setTodoText("");
+    console.log(res);
   };
 
   // 削除ボタン押下時の処理
-  const onClickDelete = (index) => {
-    const newTodos = [...incompleteTodos];
-    newTodos.splice(index, 1);
-    setIncompleteTodos(newTodos);
+  const onClickDelete = async (id) => {
+    const res = await axios.post('http://localhost:3001/todos/deleteTodo', { id: id });
+    setIncompleteTodos(res.data.incompleteTodos);
   };
 
   // 完了ボタン押下時の処理
-  const onClickComplete = (index) => {
-    // 未完了項目を更新
-    const newIncompleteTodos = [...incompleteTodos];
-    newIncompleteTodos.splice(index, 1);
-    setIncompleteTodos(newIncompleteTodos);
-
-    // 完了項目を更新
-    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
-    setCompleteTodos(newCompleteTodos);
+  const onClickComplete = async (id) => {
+    const res = await axios.post('http://localhost:3001/todos/updateTodo', { id: id, status: 2 });
+    setIncompleteTodos(res.data.incompleteTodos);
+    setCompleteTodos(res.data.completeTodos);
   };
 
   // 戻るボタン押下時の処理
-  const onClickback = (index) => {
-    // 完了項目を更新
-    const newCompleteTodos = [...completeTodos];
-    newCompleteTodos.splice(index, 1);
-    setCompleteTodos(newCompleteTodos);
-
-    // 未完了項目を更新
-    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
-    setIncompleteTodos(newIncompleteTodos);
+  const onClickback = async (id) => {
+    const res = await axios.post('http://localhost:3001/todos/updateTodo', { id: id, status: 1 });
+    setIncompleteTodos(res.data.incompleteTodos);
+    setCompleteTodos(res.data.completeTodos);
   };
 
   return (

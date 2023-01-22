@@ -6,12 +6,12 @@ export const IncompleteTodos = (props) => {
     <div className="incomplete-area">
       <p className="title">未完了のTODO</p>
       <ul>
-        {incompleteTodos.map((todo, index) => {
+        {incompleteTodos.map((todo) => {
           return (
-            <div key={todo} className="list-row">
-              <li>{todo}</li>
-              <button onClick={() => onClickComplete(index)}>完了</button>
-              <button onClick={() => onClickDelete(index)}>削除</button>
+            <div key={todo.id} className="list-row">
+              <li>{todo.text}</li>
+              <button onClick={() => onClickComplete(todo.id)}>完了</button>
+              <button onClick={() => onClickDelete(todo.id)}>削除</button>
             </div>
           );
         })}
