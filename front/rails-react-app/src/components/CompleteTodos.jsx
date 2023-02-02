@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const CompleteTodos = (props) => {
   const { completeTodos, onClickback } = props;
@@ -18,10 +17,4 @@ export const CompleteTodos = (props) => {
       </ul>
     </div>
   );
-};
-
-CompleteTodos.propTypes = {
-  completeTodos: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
-  onClickback: PropTypes.string,
 };
