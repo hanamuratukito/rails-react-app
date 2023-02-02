@@ -5,17 +5,7 @@ import { InputTodo } from './components/InputTodo';
 import { IncompleteTodos } from './components/IncompleteTodos';
 import { CompleteTodos } from './components/CompleteTodos';
 
-export const App = () => {
-  useEffect(() => {
-    (async () => {
-      const res = await axios.get('http://localhost:3001/todos/getTodo');
-      setIncompleteTodos(res.data.incompleteTodos);
-      setCompleteTodos(res.data.completeTodos);
-
-      console.log(res);
-    })();
-  }, []);
-
+export function App() {
   // TODO入力を管理する変数
   const [todoText, setTodoText] = useState('');
 
@@ -27,6 +17,14 @@ export const App = () => {
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get('http://localhost:3001/todos/getTodo');
+      setIncompleteTodos(res.data.incompleteTodos);
+      setCompleteTodos(res.data.completeTodos);
+    })();
+  }, []);
+
   // 追加ボタン押下時の処理
   const onClickAdd = async () => {
     if (todoText === '') return;
@@ -36,13 +34,12 @@ export const App = () => {
     setIncompleteTodos(res.data.incompleteTodos);
 
     setTodoText('');
-    console.log(res);
   };
 
   // 削除ボタン押下時の処理
   const onClickDelete = async (id) => {
     const res = await axios.post('http://localhost:3001/todos/deleteTodo', {
-      id: id,
+      id,
     });
     setIncompleteTodos(res.data.incompleteTodos);
   };
@@ -50,7 +47,7 @@ export const App = () => {
   // 完了ボタン押下時の処理
   const onClickComplete = async (id) => {
     const res = await axios.post('http://localhost:3001/todos/updateTodo', {
-      id: id,
+      id,
       status: 2,
     });
     setIncompleteTodos(res.data.incompleteTodos);
@@ -60,7 +57,7 @@ export const App = () => {
   // 戻るボタン押下時の処理
   const onClickback = async (id) => {
     const res = await axios.post('http://localhost:3001/todos/updateTodo', {
-      id: id,
+      id,
       status: 1,
     });
     setIncompleteTodos(res.data.incompleteTodos);
@@ -82,4 +79,6 @@ export const App = () => {
       <CompleteTodos completeTodos={completeTodos} onClickback={onClickback} />
     </>
   );
-};
+}
+
+export default App;

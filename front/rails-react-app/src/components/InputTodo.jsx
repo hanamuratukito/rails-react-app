@@ -9,14 +9,14 @@ const style = {
 };
 
 export const InputTodo = (props) => {
-  return (
-    <div style={style}>
-      <input
-        placeholder="TODOを入力"
-        value={props.todoText}
-        onChange={props.onChangeTodoText}
-      />
-      <button onClick={props.onClickAdd}>追加</button>
-    </div>
-  );
+  <div style={style}>
+    <input
+      placeholder="TODOを入力"
+      value={props.todoText}
+      onChange={props.onChangeTodoText}
+    />
+    <button type="button" onClick={props.onClickAdd}>追加</button>
+  </div>;
 };
+
+export default InputTodo;
