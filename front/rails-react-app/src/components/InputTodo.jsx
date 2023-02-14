@@ -8,15 +8,18 @@ const style = {
   margin: '8px',
 };
 
-export const InputTodo = (props) => {
-  <div style={style}>
-    <input
-      placeholder="TODOを入力"
-      value={props.todoText}
-      onChange={props.onChangeTodoText}
-    />
-    <button type="button" onClick={props.onClickAdd}>追加</button>
-  </div>;
+const InputTodo = (props) => {
+  const { todoText, onChangeTodoText, onClickAdd } = props;
+  return (
+    <div style={style}>
+      <input
+        placeholder="TODOを入力"
+        value={todoText}
+        onChange={onChangeTodoText}
+      />
+      <button type="button" onClick={onClickAdd}>追加</button>
+    </div>
+  );
 };
 
 export default InputTodo;

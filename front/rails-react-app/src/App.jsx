@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './styles.css';
-import { InputTodo } from './components/InputTodo';
-import { IncompleteTodos } from './components/IncompleteTodos';
-import { CompleteTodos } from './components/CompleteTodos';
+import InputTodo from './components/InputTodo';
+import IncompleteTodos from './components/IncompleteTodos';
+import CompleteTodos from './components/CompleteTodos';
 
-export function App() {
+export const App = () => {
   // TODO入力を管理する変数
   const [todoText, setTodoText] = useState('');
 
@@ -79,6 +79,6 @@ export function App() {
       <CompleteTodos completeTodos={completeTodos} onClickback={onClickback} />
     </>
   );
-}
+};
 
 export default App;
