@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const style = {
   backgroundColor: '#c1ffff',
@@ -8,7 +8,13 @@ const style = {
   margin: '8px',
 };
 
-const InputTodo = (props) => {
+interface InputTodoInterface {
+  todoText: string;
+  onChangeTodoText: React.ChangeEventHandler<HTMLInputElement>;
+  onClickAdd: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const InputTodo = (props: InputTodoInterface) => {
   const { todoText, onChangeTodoText, onClickAdd } = props;
   return (
     <div style={style}>
@@ -17,7 +23,9 @@ const InputTodo = (props) => {
         value={todoText}
         onChange={onChangeTodoText}
       />
-      <button type="button" onClick={onClickAdd}>追加</button>
+      <button type="button" onClick={onClickAdd}>
+        追加
+      </button>
     </div>
   );
 };

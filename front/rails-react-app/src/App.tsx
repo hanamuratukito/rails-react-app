@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import './styles.css';
 import InputTodo from './components/InputTodo';
 import IncompleteTodos from './components/IncompleteTodos';
@@ -7,17 +7,17 @@ import CompleteTodos from './components/CompleteTodos';
 
 export const App = () => {
   // TODO入力を管理する変数
-  const [todoText, setTodoText] = useState('');
+  const [todoText, setTodoText] = React.useState('');
 
   // 未完了のTODOを管理する変数
-  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  const [incompleteTodos, setIncompleteTodos] = React.useState([]);
 
   // 完了のTODOを管理する変数
-  const [completeTodos, setCompleteTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = React.useState([]);
 
-  const onChangeTodoText = (event) => setTodoText(event.target.value);
+  const onChangeTodoText = (event: any) => setTodoText(event?.target.value);
 
-  useEffect(() => {
+  React.useEffect(() => {
     (async () => {
       const res = await axios.get('http://localhost:3001/todos/getTodo');
       setIncompleteTodos(res.data.incompleteTodos);
@@ -37,7 +37,7 @@ export const App = () => {
   };
 
   // 削除ボタン押下時の処理
-  const onClickDelete = async (id) => {
+  const onClickDelete = async (id: number) => {
     const res = await axios.post('http://localhost:3001/todos/deleteTodo', {
       id,
     });
@@ -45,7 +45,7 @@ export const App = () => {
   };
 
   // 完了ボタン押下時の処理
-  const onClickComplete = async (id) => {
+  const onClickComplete = async (id: number) => {
     const res = await axios.post('http://localhost:3001/todos/updateTodo', {
       id,
       status: 2,
@@ -55,7 +55,7 @@ export const App = () => {
   };
 
   // 戻るボタン押下時の処理
-  const onClickback = async (id) => {
+  const onClickback = async (id: number) => {
     const res = await axios.post('http://localhost:3001/todos/updateTodo', {
       id,
       status: 1,
