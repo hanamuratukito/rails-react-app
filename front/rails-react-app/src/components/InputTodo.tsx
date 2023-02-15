@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 const style = {
   backgroundColor: '#c1ffff',
@@ -19,10 +19,13 @@ const InputTodo = (props: InputTodoInterface) => {
   const { todoText, onChangeTodoText, onClickAdd } = props;
   return (
     <div style={style}>
-      <input
+      <TextField
+        id="standard-basic"
+        variant="standard"
         placeholder="TODOを入力"
         value={todoText}
         onChange={onChangeTodoText}
+        size="small"
       />
       <Button
         size="small"
