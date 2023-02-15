@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from '@mui/material';
 
 const style = {
   backgroundColor: '#c1ffff',
@@ -11,7 +12,7 @@ const style = {
 interface InputTodoInterface {
   todoText: string;
   onChangeTodoText: React.ChangeEventHandler<HTMLInputElement>;
-  onClickAdd: React.MouseEventHandler<HTMLButtonElement>
+  onClickAdd: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const InputTodo = (props: InputTodoInterface) => {
@@ -23,9 +24,14 @@ const InputTodo = (props: InputTodoInterface) => {
         value={todoText}
         onChange={onChangeTodoText}
       />
-      <button type="button" onClick={onClickAdd}>
+      <Button
+        size="small"
+        onClick={onClickAdd}
+        variant="contained"
+        disabled={todoText === ''}
+      >
         追加
-      </button>
+      </Button>
     </div>
   );
 };

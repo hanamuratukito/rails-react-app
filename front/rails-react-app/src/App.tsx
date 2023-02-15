@@ -27,7 +27,6 @@ export const App = () => {
 
   // 追加ボタン押下時の処理
   const onClickAdd = async () => {
-    if (todoText === '') return;
     const res = await axios.post('http://localhost:3001/todos/addTodo', {
       text: todoText,
     });

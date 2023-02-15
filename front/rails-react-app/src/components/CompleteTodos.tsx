@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from '@mui/material';
 
 interface CompleteTodoInterface {
   completeTodos: CompleteTodosInfo[];
@@ -19,7 +20,13 @@ const CompleteTodos = (props: CompleteTodoInterface) => {
         {completeTodos.map((todo: CompleteTodosInfo) => (
           <div key={todo.id} className="list-row">
             <li>{todo.text}</li>
-            <button type="button" onClick={() => onClickback(todo.id)}>戻す</button>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => onClickback(todo.id)}
+            >
+              戻す
+            </Button>
           </div>
         ))}
       </ul>

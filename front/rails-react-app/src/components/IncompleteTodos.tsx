@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from '@mui/material';
 
 interface IncompleteTodoInterface {
   incompleteTodos: IncompleteTodosInfo[];
@@ -20,8 +21,20 @@ const IncompleteTodos = (props: IncompleteTodoInterface) => {
         {incompleteTodos.map((todo: IncompleteTodosInfo) => (
           <div key={todo.id} className="list-row">
             <li>{todo.text}</li>
-            <button type="button" onClick={() => onClickComplete(todo.id)}>完了</button>
-            <button type="button" onClick={() => onClickDelete(todo.id)}>削除</button>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => onClickComplete(todo.id)}
+            >
+              完了
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => onClickDelete(todo.id)}
+            >
+              削除
+            </Button>
           </div>
         ))}
       </ul>
